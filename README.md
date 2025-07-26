@@ -1,2 +1,5 @@
-# mini-blog
-Minimal blog platform with a focus on database(PostgreSQL) design
+# A minimum blogging platform
+
+**Technologies**
+*Frontend*: HTML, CSS, JS
+*Backend*: NodeJS, Express, PostgreSQL
