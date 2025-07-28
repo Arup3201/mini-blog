@@ -1,5 +1,5 @@
 # A minimum blogging platform
 
 **Technologies**
-*Frontend*: HTML, CSS, JS
+*Frontend*: ReactJS
 *Backend*: NodeJS, Express, PostgreSQL
