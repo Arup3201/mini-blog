@@ -2,4 +2,5 @@
 
 **Technologies**
 *Frontend*: ReactJS
-*Backend*: NodeJS, Express, PostgreSQL
+*Backend*: NodeJS, Express
+*Databse*: PostgreSQL
