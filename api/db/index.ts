@@ -16,13 +16,7 @@ const db = {
     const duration = Date.now() - start;
     console.log("executed query", { text, duration, rows: res.rowCount });
     return res;
-  },
-  commit: async function() {
-    const start = Date.now();
-    await this.pool.query("COMMIT");
-    const duration = Date.now() - start;
-    console.log("Changes commited to DB", { duration });
-  },
+  }
 };
 
 export default db;
