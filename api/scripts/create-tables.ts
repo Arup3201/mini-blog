@@ -1,9 +1,9 @@
 // Script to create the necessary models in the database with their columns
 
-import { pool as db } from "../db";
+import db from "../db";
 
 // users table
-db.query(
+db.pool.query(
   `CREATE TABLE users(
     id VARCHAR(150) PRIMARY KEY, 
     created_at TIMESTAMP WITH TIME ZONE, 
@@ -15,16 +15,16 @@ db.query(
   )`,
   (err) => {
     if (err) {
-      db.end(); // release all the clients that are still connected
+      db.pool.end(); // release all the clients that are still connected
       console.error(
         `Error: while creating users table, error occured - ${err.message}`
       );
       return;
     }
 
-    db.query("COMMIT", (err) => {
+    db.pool.query("COMMIT", (err) => {
       if (err) {
-        db.end(); // release all the clients that are still connected
+        db.pool.end(); // release all the clients that are still connected
         console.error(
           `Error: while creating posts table, error occured - ${err.message}`
         );
@@ -32,7 +32,7 @@ db.query(
       }
 
       // posts table
-      db.query(
+      db.pool.query(
         `CREATE TABLE posts(
           id VARCHAR(150) PRIMARY KEY, 
           created_at TIMESTAMP WITH TIME ZONE, 
@@ -42,16 +42,16 @@ db.query(
         )`,
         (err) => {
           if (err) {
-            db.end(); // release all the clients that are still connected
+            db.pool.end(); // release all the clients that are still connected
             console.error(
               `Error: while creating posts table, error occured - ${err.message}`
             );
             return;
           }
 
-          db.query("COMMIT", (err) => {
+          db.pool.query("COMMIT", (err) => {
             if (err) {
-              db.end(); // release all the clients that are still connected
+              db.pool.end(); // release all the clients that are still connected
               console.error(
                 `Error: while creating comments table, error occured - ${err.message}`
               );
@@ -59,7 +59,7 @@ db.query(
             }
 
             // comments table
-            db.query(
+            db.pool.query(
               `CREATE TABLE comments(
                 id VARCHAR(150) PRIMARY KEY, 
                 created_at TIMESTAMP WITH TIME ZONE, 
@@ -69,16 +69,16 @@ db.query(
               )`,
               (err) => {
                 if (err) {
-                  db.end(); // release all the clients that are still connected
+                  db.pool.end(); // release all the clients that are still connected
                   console.error(
                     `Error: while creating comments table, error occured - ${err.message}`
                   );
                   return;
                 }
 
-                db.query("COMMIT", (err) => {
+                db.pool.query("COMMIT", (err) => {
                   if (err) {
-                    db.end(); // release all the clients that are still connected
+                    db.pool.end(); // release all the clients that are still connected
                     console.error(
                       `Error: while commiting create comments table, error occured - ${err.message}`
                     );
