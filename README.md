@@ -1,4 +1,4 @@
-# A minimum blogging platform
+# A minimal blogging platform
 
 ## **Technologies**
 
