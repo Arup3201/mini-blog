@@ -7,11 +7,11 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
-app.use(users);
-app.use(posts);
-app.use(comments);
+app.use("/api/v1", users);
+app.use("/api/v1", posts);
+app.use("/api/v1", comments);
 
-app.get("/health", (_, res) => {
+app.get("/api/v1/health", (_, res) => {
   res.send("Server is running");
 });
 
