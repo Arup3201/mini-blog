@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="bg-body-tertiary navbar">
       <div className="d-flex justify-content-between container-fluid">
-        <a className="d-flex align-items-center navbar-brand" href="/">
+        <a className="d-flex align-items-center gap-1 navbar-brand" href="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
