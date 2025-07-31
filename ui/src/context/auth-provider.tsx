@@ -8,6 +8,7 @@ const AuthContext = createContext({
   isAuthenticated: false,
   user: {} as User | undefined,
   login: async (_: string, __: string) => {},
+  logout: () => {},
 });
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -52,11 +53,21 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const logout = () => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    if (user && Object.keys(user).length > 0) {
+      localStorage.removeItem("user");
+      setUser(undefined);
+      setIsAuthenticated(false);
+    }
+  };
+
   const ctxValue = {
     loading: loading,
     isAuthenticated: isAuthenticated,
     user: user,
     login: login,
+    logout: logout,
   };
 
   return (

@@ -1,7 +1,7 @@
 import useAuth from "../hooks/use-auth";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <nav className="bg-body-tertiary navbar">
@@ -65,6 +65,18 @@ const Navbar = () => {
                 <span className="dropdown-item-text">
                   Username: {user?.username || "Loading..."}
                 </span>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logout();
+                  }}
+                >
+                  Logout
+                </a>
               </li>
             </ul>
           </div>
