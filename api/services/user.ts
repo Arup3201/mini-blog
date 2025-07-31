@@ -23,7 +23,7 @@ const UserService = {
     }
 
     const sql =
-      "SELECT id, username, email, created_at FROM users WHERE username==($1)";
+      "SELECT * FROM users WHERE username=($1)";
     const values = [username];
     const { rows } = await db.query(sql, values);
     if (rows.length === 0) {
@@ -49,7 +49,7 @@ const UserService = {
     }
 
     const sql =
-      "SELECT id, username, email, created_at FROM users WHERE user_id==($1)";
+      "SELECT id, username, email, created_at FROM users WHERE id=($1)";
     const values = [userId];
     const { rows } = await db.query(sql, values);
     if (rows.length === 0) {
