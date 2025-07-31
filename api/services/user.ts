@@ -1,4 +1,4 @@
-import db from "../db";
+import db from "../db/index";
 import { User } from "../models/user.dt";
 import { generateId } from "../utils";
 
