@@ -15,7 +15,7 @@ const UserService = {
     const sql = "INSERT INTO users(id, username, email, password, created_at) VALUES($1, $2, $3, $4, $5)";
     const values = [userId, username, email, password, currentTime];
 
-    await db.query(sql, values);
+    await db.queryWithParams(sql, values);
   },
   login: async (username: string, password: string) => {
     if (!username || !password) {
@@ -25,7 +25,7 @@ const UserService = {
     const sql =
       "SELECT * FROM users WHERE username=($1)";
     const values = [username];
-    const { rows } = await db.query(sql, values);
+    const { rows } = await db.queryWithParams(sql, values);
     if (rows.length === 0) {
       throw Error("UserService login: username is not found");
     }
@@ -51,7 +51,7 @@ const UserService = {
     const sql =
       "SELECT id, username, email, created_at FROM users WHERE id=($1)";
     const values = [userId];
-    const { rows } = await db.query(sql, values);
+    const { rows } = await db.queryWithParams(sql, values);
     if (rows.length === 0) {
       throw Error(`UserService getUser: user with id ${userId} not found`);
     }

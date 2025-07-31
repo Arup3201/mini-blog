@@ -10,13 +10,20 @@ const db = {
     port: Number(env.PG_PORT),
     idleTimeoutMillis: 30000,
   }),
-  query: async function (text: string, params: any[]) {
+  query: async function (text: string) {
+    const start = Date.now();
+    const res = await this.pool.query(text);
+    const duration = Date.now() - start;
+    console.log("executed query", { text, duration, rows: res.rowCount });
+    return res;
+  }, 
+  queryWithParams:  async function (text: string, params: any[]) {
     const start = Date.now();
     const res = await this.pool.query(text, params);
     const duration = Date.now() - start;
     console.log("executed query", { text, duration, rows: res.rowCount });
     return res;
-  }
+  }, 
 };
 
 export default db;
