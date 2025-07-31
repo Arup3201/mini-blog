@@ -1,4 +1,28 @@
+import { useNavigate } from "react-router";
+
+import { UserService } from "../services/user";
+
 const RegisterPage = () => {
+  const navigate = useNavigate();
+
+  const handleRegister: React.FormEventHandler = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      await UserService.register(
+        data.username as string,
+        data.email as string,
+        data.password as string
+      );
+      navigate("/login");
+    } catch (err) {
+      console.error("Register failed with error: ", err);
+    }
+  };
+
   return (
     <div className="mx-auto mt-5 w-25 card">
       <div className="card-body">
@@ -6,12 +30,12 @@ const RegisterPage = () => {
         <p className="card-text">
           Start your blogging journey at mBlog by creating an account today.
         </p>
-        <form>
+        <form onSubmit={handleRegister}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
               Username
             </label>
-            <input type="text" className="form-control" id="username" />
+            <input type="text" className="form-control" name="username" />
           </div>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -20,7 +44,7 @@ const RegisterPage = () => {
             <input
               type="email"
               className="form-control"
-              id="email"
+              name="email"
               aria-describedby="emailHelp"
             />
             <div id="emailHelp" className="form-text">
@@ -31,7 +55,7 @@ const RegisterPage = () => {
             <label htmlFor="password" className="form-label">
               Password
             </label>
-            <input type="password" className="form-control" id="password" />
+            <input type="password" className="form-control" name="password" />
           </div>
           <button type="submit" className="btn btn-primary">
             Register
