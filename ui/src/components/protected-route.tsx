@@ -2,6 +2,7 @@ import { Outlet, Navigate } from "react-router";
 
 import useAuth from "../hooks/use-auth";
 import Navbar from "./navbar";
+import Footer from "./footer";
 
 const ProtectedRoute = () => {
   const { loading, isAuthenticated } = useAuth();
@@ -14,6 +15,7 @@ const ProtectedRoute = () => {
     <div className="d-flex flex-column">
       <Navbar />
       <Outlet />
+      <Footer />
     </div>
   ) : (
     <Navigate to="/login" />
