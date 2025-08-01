@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { PostService } from "../services/post";
+
 import type { Post } from "../types/post";
-import { CommentService } from "../services/comment";
 import type { Comment } from "../types/comment";
+
+import { PostService } from "../services/post";
+import { CommentService } from "../services/comment";
+
+import CommentCard from "../components/comment-card";
+import CreateComment from "../components/create-comment";
+
+import useAuth from "../hooks/use-auth";
 
 const PostPage = () => {
   const { post_id: postId } = useParams();
+
+  const { user } = useAuth();
 
   const [post, setPost] = useState<Post | undefined>();
   const [comments, setComments] = useState<Comment[]>([]);
@@ -50,7 +59,7 @@ const PostPage = () => {
         return comments.map((comment) => ({
           id: comment.id,
           body: comment.body,
-          author: comment.body,
+          author: comment.author,
           post: comment.post,
           createdAt: comment.createdAt,
         }));
@@ -81,22 +90,54 @@ const PostPage = () => {
     );
   }
 
+  async function handleComment(content: string) {
+    try {
+      if (!post?.id) {
+        console.error("Error: post id missing");
+        return;
+      }
+
+      if (!user?.username) {
+        console.error("Error: user has no username");
+        return;
+      }
+
+      const comment = await CommentService.createComment(
+        post.id,
+        content,
+        user.username
+      );
+
+      if (!comment) {
+        console.error("Error: server returned null when creating comment");
+        return;
+      }
+
+      setComments((snap) => [comment, ...snap]);
+    } catch (err) {
+      console.error("Error: failed to create comment");
+      console.error("Error: ", err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="mt-2 container">
-      <h2>{post.title}</h2>
-      <span>{post.author}</span>
-      <span>{new Date(post.createdAt).toDateString()}</span>
+      <h2 className="mb-0">{post.title}</h2>
+      <div className="d-flex gap-2 mb-2 text-secondary">
+        <span>Author: {post.author}</span>
+        <span>|</span>
+        <span>Last Updated: {new Date(post.createdAt).toDateString()}</span>
+      </div>
       <p>{post.body}</p>
-      <div className="container">
-        {comments.map((comment) => {
-          return (
-            <div className="">
-              <p>{comment.body}</p>
-              <span>{comment.author}</span>
-              <span>{new Date(comment.createdAt).toDateString()}</span>
-            </div>
-          );
-        })}
+      <div className="pt-2 border-top container">
+        <CreateComment onComment={handleComment} />
+        <div className="py-4">
+          {comments.map((comment) => {
+            return <CommentCard comment={comment} />;
+          })}
+        </div>
       </div>
     </div>
   );
