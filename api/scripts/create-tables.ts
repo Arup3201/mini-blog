@@ -8,14 +8,13 @@ async function createTables() {
     await db.query(`CREATE TABLE users(
     id VARCHAR(150) PRIMARY KEY, 
     created_at TIMESTAMP WITH TIME ZONE, 
-    username VARCHAR(150) NOT NULL, 
-    email VARCHAR(150) NOT NULL, 
-    password VARCHAR(150) NOT NULL, 
-
-    UNIQUE (username, email)
+    username VARCHAR(150) UNIQUE NOT NULL, 
+    email VARCHAR(150) UNIQUE NOT NULL, 
+    password VARCHAR(150) NOT NULL
   )`);
   } catch (err) {
     console.error("create-table error: failed to create user table");
+    console.error("Error: ", err);
     return;
   }
 
@@ -26,10 +25,11 @@ async function createTables() {
       created_at TIMESTAMP WITH TIME ZONE, 
       title VARCHAR(150) NOT NULL, 
       body TEXT NOT NULL, 
-      author VARCHAR(150) REFERENCES users(id)
+      author VARCHAR(150) REFERENCES users(username)
     )`);
   } catch (err) {
     console.error("create-table error: failed to create posts table");
+    console.error("Error: ", err);
     return;
   }
 
@@ -39,12 +39,13 @@ async function createTables() {
       id VARCHAR(150) PRIMARY KEY, 
       created_at TIMESTAMP WITH TIME ZONE, 
       body TEXT NOT NULL, 
-      author VARCHAR(150) REFERENCES users(id), 
+      author VARCHAR(150) REFERENCES users(username), 
       post VARCHAR(150) REFERENCES posts(id)
     )`);
   } catch (err) {
     console.error("create-table error: failed to create comments table");
+    console.error("Error: ", err);
   }
 }
 
-createTables();
+createTables().then(() => console.log("All tables created."));
