@@ -2,13 +2,13 @@
 
 ## **Technologies**
 
-- *Frontend*: ReactJS
-- *Backend*: NodeJS, Express
-- *Database*: PostgreSQL
+- _Frontend_: ReactJS
+- _Backend_: NodeJS, Express
+- _Database_: PostgreSQL
 
 ## **DB Models**
 
-### *users*
+### _users_
 
 #### Columns
 
@@ -26,7 +26,7 @@
 
 > `created_at` is system generated.
 
-### *posts*
+### _posts_
 
 #### Columns
 
@@ -44,7 +44,7 @@
 
 > `created_at` is system generated.
 
-### *comments*
+### _comments_
 
 #### Columns
 
@@ -64,9 +64,9 @@
 
 ## **API Routes**
 
-### *users*
+### _users_
 
-#### `/register` 
+#### `/register`
 
 Description: creates a new user in the platform
 
@@ -76,9 +76,9 @@ Payload: username, email and password
 
 ```json
 {
-    "username": "Johm Smith", 
-    "email": "john@example.com", 
-    "password": "123456"
+  "username": "Johm Smith",
+  "email": "john@example.com",
+  "password": "123456"
 }
 ```
 
@@ -92,18 +92,18 @@ Payload: username, password
 
 ```json
 {
-    "username": "Johm Smith", 
-    "password": "123456"
+  "username": "Johm Smith",
+  "password": "123456"
 }
 ```
 
-#### `/users/:id` 
+#### `/users/:id`
 
 Description: get details for user with id `id`
 
 Method: GET
 
-### *posts*
+### _posts_
 
 #### `/posts/all`
 
@@ -121,9 +121,9 @@ Payload: post title, post content and author
 
 ```json
 {
-    "title": "ABC", 
-    "content": "ABC is a great post", 
-    "author": "user123" // user id
+  "title": "ABC",
+  "content": "ABC is a great post",
+  "author": "testuser" // username
 }
 ```
 
@@ -133,7 +133,7 @@ Description: get the content of a post with id `id`
 
 Method: GET
 
-### *comments*
+### _comments_
 
 #### `/comments/:post_id/all`
 
@@ -151,7 +151,7 @@ Payload: comment content, author
 
 ```json
 {
-    "content": "this is a comment", 
-    "author": "user123" // user id
+  "content": "this is a comment",
+  "author": "testuser" // username
 }
 ```
