@@ -55,7 +55,11 @@ const CreatePost = () => {
           <button type="submit" className="btn btn-primary">
             Post
           </button>
-          <button type="button" className="btn btn-secondary">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => navigate("/")}
+          >
             Cancel
           </button>
         </div>
