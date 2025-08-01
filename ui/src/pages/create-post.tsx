@@ -12,7 +12,7 @@ const CreatePost = () => {
 
     const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData.entries());
-    if (!user?.id) {
+    if (!user?.username) {
       console.error("Error: User information missing");
       return;
     }
@@ -21,7 +21,7 @@ const CreatePost = () => {
       const post = await PostService.createPost(
         data.title as string,
         data.content as string,
-        user.id as string
+        user.username as string
       );
 
       if (!post) {
