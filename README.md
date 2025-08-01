@@ -1,5 +1,15 @@
 # A minimal blogging platform
 
+## Features (Version 1)
+
+- user can register.
+- user can login (not secure).
+- user can logout (not secure).
+- user can see all the posts in the platform.
+- user can read a post and all the comments on the post.
+- user can create a post on the platform.
+- user can add a comment on a post.
+
 ## **Technologies**
 
 - _Frontend_: ReactJS
