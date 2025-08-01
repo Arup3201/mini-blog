@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router";
+
 import useAuth from "../hooks/use-auth";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-body-tertiary navbar">
@@ -21,7 +24,7 @@ const Navbar = () => {
           mBlog
         </a>
         <div className="d-flex align-items-center gap-4">
-          <button className="d-flex align-items-center gap-2 btn btn-primary">
+          <button className="d-flex align-items-center gap-2 btn btn-primary" onClick={() => navigate("/posts/create")}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
