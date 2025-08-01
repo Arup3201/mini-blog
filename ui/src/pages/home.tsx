@@ -43,17 +43,23 @@ const HomePage = () => {
 
   return (
     <div className="mt-5 container">
-      {posts.map((post) => (
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">{post.title}</h5>
-            <p className="card-text">{post.body.slice(0, 30) + "..."}</p>
-            <a href={`/posts/${post.id}`} className="btn btn-primary">
-              Click here to continue reading
-            </a>
+      {posts.length === 0 ? (
+        <p className="text-center">
+          No posts here yet. Become the first to create a post.
+        </p>
+      ) : (
+        posts.map((post) => (
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">{post.title}</h5>
+              <p className="card-text">{post.body.slice(0, 30) + "..."}</p>
+              <a href={`/posts/${post.id}`} className="btn btn-primary">
+                Click here to continue reading
+              </a>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };
