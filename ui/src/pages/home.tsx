@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { PostService } from "../services/post";
 import type { Post } from "../types/post";
+import PostCard from "../components/post";
 
 const HomePage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -51,15 +52,7 @@ const HomePage = () => {
       )}
       <div className="d-flex flex-column gap-2">
         {posts.map((post) => (
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">{post.title}</h5>
-              <p className="card-text">{post.body.slice(0, 30) + "..."}</p>
-              <a href={`/posts/${post.id}`} className="btn btn-primary">
-                Click here to continue reading
-              </a>
-            </div>
-          </div>
+          <PostCard post={post} />
         ))}
       </div>
     </div>
