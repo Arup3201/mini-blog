@@ -49,7 +49,7 @@ const CreatePost = () => {
           <label htmlFor="content" className="form-label">
             Content
           </label>
-          <input type="text" className="form-control" name="content" />
+          <textarea className="form-control" name="content" />
         </div>
         <div className="d-flex gap-2">
           <button type="submit" className="btn btn-primary">
