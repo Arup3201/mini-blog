@@ -42,13 +42,15 @@ const HomePage = () => {
   }
 
   return (
-    <div className="mt-5 container">
-      {posts.length === 0 ? (
+    <div className="my-5 container">
+      <h2>All Posts ({posts.length})</h2>
+      {posts.length === 0 && (
         <p className="text-center">
           No posts here yet. Become the first to create a post.
         </p>
-      ) : (
-        posts.map((post) => (
+      )}
+      <div className="d-flex flex-column gap-2">
+        {posts.map((post) => (
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">{post.title}</h5>
@@ -58,8 +60,8 @@ const HomePage = () => {
               </a>
             </div>
           </div>
-        ))
-      )}
+        ))}
+      </div>
     </div>
   );
 };
