@@ -60,7 +60,7 @@ const Navbar = () => {
               </svg>
             </button>
 
-            <ul className="dropdown-menu" style={{ right: "0" }}>
+            <ul className="dropdown-menu" style={{ right: 0, left: "auto" }}>
               <li>
                 <span className="dropdown-item-text">
                   Username: {user?.username || "Loading..."}
