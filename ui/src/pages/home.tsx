@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { PostService } from "../services/post";
 import type { Post } from "../types/post";
-import PostCard from "../components/post";
+import PostCard from "../components/post-card";
 
 const HomePage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
